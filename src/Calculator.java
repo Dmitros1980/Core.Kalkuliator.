@@ -1,33 +1,29 @@
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+import java.util.function.BinaryOperator;
+import java.util.function.Consumer;
+import java.util.function.UnaryOperator;
+
 public class Calculator {
+
 
     static Supplier<Calculator> instance = Calculator::new;
 
-    public interface Supplier<T> {
-        T get();
-    }
-
-    public interface Predicate<T> {
-        boolean test(T t);
-    }
-
-    public interface Consumer<T> {
-        void accept(T t);
-    }
-
-    public interface UnaryOperator<T> {
-        T apply(T t);
-    }
-
-    public interface BinaryOperator<T> {
-        T apply(T t1, T t2);
-    }
 
     BinaryOperator<Integer> plus = (x, y) -> x + y;
     BinaryOperator<Integer> minus = (x, y) -> x - y;
     BinaryOperator<Integer> multiply = (x, y) -> x * y;
 
 
-    BinaryOperator<Integer> devide = (x, y) -> x / y;
+    //  BinaryOperator<Integer> devide = (x, y) -> x / y;
+    BinaryOperator<Integer> devide = (x, y) -> {
+        if (y == 0) {
+            System.out.println("infiniti");
+            return 0;
+        }
+        return x / y;
+
+    };
 
 
     UnaryOperator<Integer> pow = x -> x * x;
